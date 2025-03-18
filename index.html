@@ -3,40 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>FizzBuzz Game</title>
     <style>
-        
         body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             text-align: center;
             background-color: #153b47;
             color: #75bfdc;
             font-family: monospace;
             font-weight: bolder;
             font-size: 18px;
-        
         }
-        div{
-            margin-top: 200px
+        div {
+            max-width: 400px;
+            width: 100%;
         }
-
-
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            background-color: #75bfdc;
+            color: #153b47;
+            border: 2px solid #75bfdc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            font-weight: bold;
+            cursor: pointer;
+        }
+        hr {
+            margin: 20px 0;
+            border-color: #75bfdc;
+        }
     </style>
 </head>
 <body>
-<div>
-    <h1>FizzBuzz Game </h1>
-    <input type="text" class="userNumber" placeholder="Enter Number">
-    <button class="mySubmit">Submit</button>
-    <p>
-
-    </p>
-    <hr>
-    <p id="demo"> Demo</p>
-
-
-</div>
-
-    <script src="script.js"></script>
+    <div>
+        <h1>FizzBuzz Game</h1>
+        <input type="text" class="userNumber" placeholder="Enter a Number">
+        <button class="mySubmit">Submit</button>
+        <hr>
+        <p id="demo">Demo</p>
+    </div>
+    <script>
+        document.getElementsByClassName("mySubmit")[0].onclick = function() {
+            let userInput = document.getElementsByClassName("userNumber")[0].value;
+            let number = parseInt(userInput);
+            if (isNaN(number) || number <= 0) {
+                document.getElementById("demo").innerHTML = "Please enter a positive integer.";
+                return;
+            }
+            let array = [];
+            for (let count = 1; count <= number; count++) {
+                if (count % 5 === 0 && count % 3 === 0) {
+                    array.push("FizzBuzz");
+                } else if (count % 5 === 0) {
+                    array.push("Buzz");
+                } else if (count % 3 === 0) {
+                    array.push("Fizz");
+                } else {
+                    array.push(count);
+                }
+            }
+            document.getElementById("demo").innerHTML = array.join(", ");
+        };
+    </script>
 </body>
 </html>
